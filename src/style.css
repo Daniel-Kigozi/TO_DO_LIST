@@ -1,6 +1,19 @@
-body {
-    background-color: gray;
+.item-details {
+  display: flex;
+  flex-direction: row;
 }
-.hello {
-    color: red;
-  }
+
+.clear > h3 {
+  text-align: center;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+.whole-body {
+  border: 1px solid #ececec;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
