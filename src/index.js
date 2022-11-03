@@ -6,6 +6,11 @@ const inputSubmit = document.querySelector("#submit");
 
 
 let todoList = [];
+let isEdit = false
+let editId = null;
+
+console.log(editId)
+
 
 
   const setLocalStorage = (todoList)=>{
@@ -31,9 +36,9 @@ let todoList = [];
       <div class="item-details">
       <input type="checkbox" id="" name="" value=""> <h4 class="item-desription">${description}</h4>
       </div>
-      <i class="fa-solid fa-trash-can" id"${index}"></i>
+      
       <button class="edit">edit</button>
-      <button type="button" id"${index}" class="delete">del</button>
+      <button type="button" class="delete" id="${index}">del</button>
             `;
   
     return divElement;
@@ -61,20 +66,70 @@ let todoList = [];
           divContainer.append(displayTodo(item));
           
         })
+        isEdit = false;
         
-        removeEvents();
+    
         }; 
+        inputDiv.value = ``;
+        removeEvents();
+        editEvents();
   
   });
-
   
+
+  const reassignIndex = (todoList) => {
+    todoList.forEach((item, i) => {
+      item.index = i + 1;
+    });
+  }
+  
+  const deleteTask = (id) => {
+    let todoList = getLocalStorage();
+    const taskToDelete = todoList[id];
+  
+    todoList = todoList.filter((item) => item !== taskToDelete);
+    reassignIndex(todoList)
+  
+    setLocalStorage(todoList);
+
+    divContainer.innerHTML='';
+    todoList.forEach((item)=>{
+      divContainer.append(displayTodo(item));
+      
+    })
+  
+    removeEvents();
+  };
 
   const removeEvents = ()=>{
     document.querySelectorAll('.delete').forEach((button)=> button.addEventListener('click', (e)=>{
       e.preventDefault();
-      console.log(button.id, e.target.getAttribute('id'));
+      let id;
+      if (button.id > 0) {
+        id = button.id - 1;
+      } else {
+        id = 0;
+      }
+      deleteTask(id);
     }))
   }
 
-  
+  const editEvents = ()=>{
+    document.querySelectorAll('.edit').forEach((button)=> button.addEventListener('click', (e)=>{
+      e.preventDefault();
+      let id;
+      if (button.id > 0) {
+        id = button.id - 1;
+      } else {
+        id = 0;
+      }
+
+      isEdit = true;
+      editId =id;
+
+      inputDiv.value = todoList[id].description;
+      inputDiv.focus();
+    }))
+  }
+
  
