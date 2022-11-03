@@ -24,6 +24,12 @@
       return todoList;
   }
 
+  const reassignIndex = (todoList) => {
+    todoList.forEach((item, i) => {
+      item.index = i + 1;
+    });
+  }
+
   
   
     const deleteTask = (id) => {
