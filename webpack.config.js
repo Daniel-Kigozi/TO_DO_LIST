@@ -9,10 +9,10 @@ module.exports = {
   devServer: {
     static: './dist',
   },
-  
+
   plugins: [
     new HtmlWebpackPlugin({
-        template: './src/index.html',
+      template: './src/index.html',
     }),
   ],
   module: {
@@ -26,7 +26,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-   clean: true,
+    clean: true,
   },
-  
+
 };
