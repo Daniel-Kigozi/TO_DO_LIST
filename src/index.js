@@ -65,7 +65,7 @@ const removeEvents = () => {
       id = 0;
     }
 
-    deleteTask(id);
+    deleteTask(id); // eslint-disable-line
   }));
 };
 
