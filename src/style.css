@@ -13,7 +13,22 @@ body {
 
 .whole-body {
   border: 1px solid #ececec;
-  width: 80%;
+  width: 50%;
   margin: auto;
   padding: 20px;
+}
+
+.books-container {
+  width: 50%;
+  margin: auto;
+}
+
+form {
+  text-align: center;
+}
+
+.button-details {
+  height: 20px;
+  margin: auto;
+  float: right;
 }

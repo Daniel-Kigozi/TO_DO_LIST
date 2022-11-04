@@ -1,28 +1,31 @@
 
-  import './style.css';
+  import { getLocalStorage, mainToggle, setLocalStorage } from './complete.js';
+import './style.css';
   const divContainer = document.querySelector(".books-container");
   const inputDiv = document.querySelector("#title");
   const inputSubmit = document.querySelector("#submit");
   
-  let todoList = [];
+  let todoList = getLocalStorage() || [];
   
   let isEdit = false
   let editId = null;
+  mainToggle();
 
   
-  const setLocalStorage = (todoList)=>{
-    localStorage.setItem('formInputs', JSON.stringify(todoList));
-  }
+  // const setLocalStorage = (todoList)=>{
+  //   localStorage.setItem('formInputs', JSON.stringify(todoList));
+  // }
   
-  const getLocalStorage = ()=>{
-    if (localStorage.getItem('formInputs') !== null) {
-      todoList = JSON.parse(localStorage.getItem('formInputs'));
-      } else {
-      todoList = [];
-  
-      }
-      return todoList;
-  }
+  // const getLocalStorage = ()=>{
+  //   if (localStorage.getItem('formInputs') !== null) {
+  //     todoList = JSON.parse(localStorage.getItem('formInputs'));
+  //     } else {
+  //     todoList = [];
+  //     }
+  //     return todoList;
+  // }
+  setLocalStorage(todoList); 
+  getLocalStorage();
 
   const reassignIndex = (todoList) => {
     todoList.forEach((item, i) => {
@@ -88,21 +91,21 @@
     const displayTodo = ({ description, index, completed}) => {
       
         const divElement = document.createElement('div');
-  
         divElement.className = 'first-item';
         divElement.innerHTML = `
         <div class="item-details">
         <input type="checkbox" name="" value="" class="complete" ${completed? 'checked':''}> <h4 class="item-desription">${description}</h4>
-        </div>
+        
         <i class="fa-solid fa-trash-can" id"${index}"></i>
+        <div class="button-details">
         <button class="edit" id="${index}">edit</button>
         <button type="button" id="${index}" class="delete">del</button>
+        </div>
+        </div>
               `;
     
       return divElement;
       
-      
-    
     };
   
     inputSubmit.addEventListener('click', (e) => {
@@ -133,6 +136,7 @@
             isEdit = false;
             
           }
+          mainToggle();
           inputDiv.value = ``;
           removeEvents();
          editEvents();
@@ -149,16 +153,29 @@
 
     
     })
-    const togle = document.querySelectorAll('.complete');
-    togle.forEach((toggleItem, index)=> {
-      toggleItem.addEventListener('change', ()=>{
-        let todoList = getLocalStorage();
-        todoList[index].completed= todoList[index].completed ? false : true;
-        setLocalStorage(todoList);
-      })
-    })
+    mainToggle()
     removeEvents()
     editEvents() 
+
+    const deleteAllItems = document.querySelector('.clear-data');
+    deleteAllItems.addEventListener('click', ()=>{
+      todoList = getLocalStorage();
+      todoList = todoList.filter((item)=>{
+        return item.completed===false;
+      }) 
+      setLocalStorage(todoList);
+      divContainer.innerHTML='';
+      todoList.forEach((item)=>{
+      divContainer.append(displayTodo(item));
+
+    
+    })
+      mainToggle(); 
+      removeEvents();
+      editEvents();
+      
+    })
+    
   
     
     
