@@ -70,19 +70,17 @@ const removeEvents = () => {
 };
 
 const deleteTask = (id) => {
-  let todoList = getLocalStorage();
+  todoList = getLocalStorage();
   const taskToDelete = todoList[id];
 
   todoList = todoList.filter((item) => item !== taskToDelete);
   reassignIndex(todoList);
 
   setLocalStorage(todoList);
-
   divContainer.innerHTML = '';
   todoList.forEach((item) => {
     divContainer.append(displayTodo(item));
   });
-
   removeEvents();
   editEvents();
 };
@@ -100,7 +98,7 @@ inputSubmit.addEventListener('click', (e) => {
       todoList.push(list);
       setLocalStorage(todoList);
       todoList = getLocalStorage();
-      divContainer.innerHTML = ''; setLocalStorage(todoList);
+      divContainer.innerHTML = '';
       todoList.forEach((item) => {
         divContainer.append(displayTodo(item));
       });
