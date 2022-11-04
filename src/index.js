@@ -64,9 +64,8 @@ const removeEvents = () => {
     } else {
       id = 0;
     }
-/* eslint-disable */
+
     deleteTask(id);
-    
   }));
 };
 
