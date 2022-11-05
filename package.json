@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist",
     "build": "webpack",
     "start": "webpack serve --open"
   },
@@ -18,13 +18,14 @@
   "bugs": {
     "url": "https://github.com/Daniel-Kigozi/TO_DO_LIST/issues"
   },
-  "homepage": "https://github.com/Daniel-Kigozi/TO_DO_LIST#readme",
+  "homepage": "https://Daniel-Kigozi/github.io/TO_DO_LIST",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.26.0",
+    "gh-pages": "^4.0.0",
     "hint": "^7.1.3",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
