@@ -25,6 +25,8 @@ To get a local copy up and running follow these simple example steps.
 -Twitter: [@DanielKigozi15](https://twitter.com/@DanielKigozi15)
 -LinkedIn: [daniel-kigozi-375182208/](https://www.linkedin.com/in/daniel-kigozi-375182208/)
 
+#Github pages
+[Github-pages live-link](https://daniel-kigozi.github.io/TO_DO_LIST/)
 
 handshake Contributing
 Contributions, issues, and feature requests are welcome!
